@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="Victor Pinto" name="author"/>   
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="/css/login-register.css" rel="stylesheet"/>
+        <link rel="shortcut icon" href="/img/favicon.ico"/>
+        <title>Libreria Egg</title>  
+    </head>
+    <body>
+        <script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <header>
+            <!--            <nav th:replace="fragments/navbar :: navbar"></nav>-->
+        </header>
+        <main>
+            <div class="body">
+                <div class="veen">
+                    <div class="login-btn splits">
+                        <p>Already an user?</p>
+                        <button class="active">Login</button>
+                    </div>
+                    <div class="rgstr-btn splits">
+                        <p>Don't have an account?</p>
+                        <button>Register</button>
+                    </div>
+                    <div class="wrapper">
+                        <form th:action="@{/logincheck}" method="POST" id="login" tabindex="500">
+                            <h3>Login</h3>
+                            <div class="mail">
+                                <input type="email" name="email">
+                                <label>Mail</label>
+                            </div>
+                            <div class="passwd">
+                                <input type="password" name="clave">
+                                <label>Password</label>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" class="dark">Login</button>
+                            </div>
+                            <h4 class="display-4" th:text="${titulo}" ></h4>
+                    <p th:text="${descripcion}"></p>
+                        </form>
+<!--////////////////////////////Registro de usuario//////////////////////////-->
+                        <form th:action="@{/register}" th:object=${customer} method="POST"  id="register" tabindex="502" enctype="multipart/form-data">
+                            <h3>Register</h3>
+                            <div class="name">
+                                <input th:field="*{nombre}" type="text" name="">
+                                <label>Nombre</label>
+                            </div>
+                            <div class="name">
+                                <input th:field="*{apellido}" type="text" name="">
+                                <label>Apellido</label>
+                            </div>
+                            <div class="name">
+                                <input th:field="*{dni}" type="number" name="">
+                                <label>Dni</label>
+                            </div>
+                            <div class="mail">
+                                <input th:field="*{email}" type="mail" name="">
+                                <label>Mail</label>
+                            </div>
+                            <div class="passwd">
+                                <input th:field="*{clave}" type="password" name="">
+                                <label>Password</label>
+                            </div>
+                            <div class="passwd">
+                                <input type="password" name="clave2">
+                                <label>Repita password</label>
+                            </div>
+                            
+                            <div class="passwd">
+                                <input type="file" name="file" accept="image/png, image/jpeg, image/jpeg">
+                                <label>Imagen de perfil</label>
+                            </div>
+                            
+                            
+                            
+                            <div class="submit">
+                                <button type="submit" class="dark">Register</button>
+                            </div>
+                            <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
+                        </form>
+                    </div>
+                </div>	
+            </div>
+
+
+            <style type="text/css">
+                .site-link{
+                    padding: 5px 15px;
+                    position: fixed;
+                    z-index: 99999;
+                    background: #fff;
+                    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+                    right: 30px;
+                    bottom: 30px;
+                    border-radius: 10px;
+                }
+                .site-link img{
+                    width: 30px;
+                    height: 30px;
+                }
+            </style>
+            <!-- partial -->
+<!--            <script  src="./script.js"></script>-->
+
+
+
+        </main>
+
+
+        <!--        <footer th:replace="fragments/footer :: footer"></footer>-->
+
+        <!--js-->
+        <script  src="/js/registro.js"></script>
+        <script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
+    </body>
+</html>
