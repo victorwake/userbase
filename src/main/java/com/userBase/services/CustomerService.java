@@ -66,10 +66,9 @@ public class CustomerService implements UserDetailsService {
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(String nombre, String apellido, String dni, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {   
+    public void modificar(String nombre, String apellido, String dni, Optional<MultipartFile> file, Customer customer) throws Exception {   
         customer.setNombre(nombre);
         customer.setDni(dni);
-        customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
         customer.setActive(true);
         activateIfNew(customer);
@@ -89,7 +88,7 @@ public class CustomerService implements UserDetailsService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void modificarprofileadmin(String nombre, String apellido, String dni, String role, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
+    public void modificarprofileadmin(String nombre, String apellido, String dni, String role, Optional<MultipartFile> file, Customer customer) throws Exception {
 
         //Ingresar validaciones en un futuro
         if (role.equalsIgnoreCase("ADMIN")) {
@@ -100,13 +99,11 @@ public class CustomerService implements UserDetailsService {
 
         customer.setNombre(nombre);
         customer.setDni(dni);
-        customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
         customer.setActive(Boolean.TRUE);
 
 //        validaNombre(customer);
 //        validaApellido(customer);
-//        validaTelefono(customer);
 //        validaDni(customer);
         activateIfNew(customer);
         String idPhoto = null;
@@ -196,7 +193,6 @@ public class CustomerService implements UserDetailsService {
 //        validaSiExiste(customer);
         validaNombre(customer);
         validaApellido(customer);
-        validaTelefono(customer);
         validaDni(customer);
         validaClave(customer);
         validaEmail(customer);
@@ -254,18 +250,6 @@ public class CustomerService implements UserDetailsService {
 //        if (mather.find() == true) {
 //            throw new ErrorService("caracteres invalido apellido.");
 //        }
-    }
-
-    ////////////////////////////////////////////////////////////////////////
-    //Telefono
-    ////////////////////////////////////////////////////////////////////////
-    public void validaTelefono(Customer customer) throws ErrorService {
-        Pattern pattern = Pattern
-                .compile("^[0123456789]{8,16}$");
-        Matcher mather = pattern.matcher(customer.getNumeroTelefono());
-        if (mather.find() != true) {
-            throw new ErrorService("Numero de Telefono incorrecto!");
-        }
     }
 
     ////////////////////////////////////////////////////////////////////////

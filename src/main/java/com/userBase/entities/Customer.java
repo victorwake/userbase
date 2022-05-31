@@ -29,7 +29,6 @@ public class Customer {
     private String apellido;
     @EqualsAndHashCode.Include
     private String dni;
-    private String numeroTelefono;
     @EqualsAndHashCode.Include
     private String email;
     private String clave;
