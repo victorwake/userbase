@@ -40,6 +40,27 @@ public class CustomerController {
         this.photoRepository = photoRepository;
     }
 
+////////////////////////////////////////////////////////////////////////////////
+    
+    @GetMapping("/profile")
+    public String profile(ModelMap model, HttpSession session) {
+        Customer customer = (Customer) session.getAttribute("customersession");
+
+        return "customer/profile";
+    }
+
+    @GetMapping("/alta/{id}")
+    public String activate(@PathVariable String id, ModelMap model,HttpSession session) {
+        try {
+            Customer customer = customerService.findById(id);
+            customerService.alta(customer);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+        return "redirect:/customer/list";
+        
+    }
+    
     @PostMapping("/update/{id}")
     public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, ModelMap model,
             Optional<MultipartFile> file, HttpSession session) {
@@ -54,29 +75,6 @@ public class CustomerController {
             System.err.println(e);
             return "customer/customeredit";
         }
-        return "customer/profile";
-    }
-//    ////////////////////////////////////////////////////////////////////////////
-
-    @GetMapping("/alta/{id}")
-    public String activate(@PathVariable String id, ModelMap model,HttpSession session) {
-     
-        try {
-            Customer customer = customerService.findById(id);
-            customerService.alta(customer);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", e.getMessage());
-        }
-       
-        return "redirect:/customer/list";
-        
-    }
-    
- 
-    @GetMapping("/profile")
-    public String profile(ModelMap model, HttpSession session) {
-        Customer customer = (Customer) session.getAttribute("customersession");
-
         return "customer/profile";
     }
 

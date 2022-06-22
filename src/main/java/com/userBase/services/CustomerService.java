@@ -274,7 +274,7 @@ public class CustomerService implements UserDetailsService {
                 .compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$");
         Matcher mather = pattern.matcher(customer.getClave());
         if (mather.find() != true) {
-            throw new ErrorService("clave 8 a 16 digitos 1 May 1 Min minimo");
+            throw new ErrorService("clave de 8 a 16 digitos y 1 May y 1 Min minimo");
         }
 
         if (customer.getClave().isEmpty()) {

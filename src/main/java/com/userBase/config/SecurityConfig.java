@@ -48,10 +48,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/").permitAll();
+                .logoutSuccessUrl("/").permitAll()
+                .deleteCookies("JSESSIONID")
+                .and()
+                .csrf()
+                .disable();;
                 
     }
     
 
 
 }
+
+//.defaultSuccessUrl("/home", true)
+//.failureUrl("/login?error=true")

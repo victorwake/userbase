@@ -7,7 +7,7 @@
         <meta content="Victor Pinto" name="author"/>      
         <link href="/css/index.css" rel="stylesheet"/>
         <link rel="shortcut icon" href="/img/favicon.ico"/>
-        <title>Ex Egg</title>  
+        <title>Ex-Egg</title>  
     </head>
     <body>
         <div class="wwdc">
@@ -25,7 +25,8 @@
                 Proyecto colaborativo, ex compañeros Egg.<br>
                 <span class="unicorn4">Proyecto colaborativo, ex compañeros Egg.</span>
             </div>
-            <a class="nav-link" th:href="@{/form}"><span class="unicorn7">getIntoNow()</span></a>
+            <a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/form}"><span class="unicorn7">getIntoNow()</span></a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/main}"><span class="unicorn7">getIntoNow()</span></a>
             <br>
             <br>
             <p>
@@ -37,5 +38,4 @@
         </div>
     </body>
 </html>
-
 
